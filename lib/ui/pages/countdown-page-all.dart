@@ -4,6 +4,7 @@ import 'package:fitness_app/widgets/round-button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class CountdownPageAll extends StatefulWidget {
   List<Choice> choices;
@@ -75,13 +76,18 @@ class _CountdownPageAllState extends State<CountdownPageAll>
       Center(
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
+            Image.asset(kChoises[widget.current_index].icon,height: 260.0,
+              width: 260.0,),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: 260,
+                    height: 260,
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.grey.shade300,
                       value: progress,
@@ -93,7 +99,7 @@ class _CountdownPageAllState extends State<CountdownPageAll>
                     builder: (context, child) => Text(
                       countText,
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
                         color: kTextColor,
                       ),
@@ -147,13 +153,18 @@ class _CountdownPageAllState extends State<CountdownPageAll>
       Center(
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
+            Image.asset(kChoises[widget.current_index].icon,height: 260.0,
+              width: 260.0,),
             Expanded(
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: 260,
+                    height: 260,
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.grey.shade300,
                       value: progress,
@@ -161,9 +172,9 @@ class _CountdownPageAllState extends State<CountdownPageAll>
                     ),
                   ),
                   Text(
-                    widget.choices[widget.current_index].reps.toString(),
+                      'x'+ widget.choices[widget.current_index].reps.toString(),
                     style: TextStyle(
-                      fontSize: 60,
+                      fontSize: 50,
                       fontWeight: FontWeight.bold,
                       color: kTextColor,
                     ),
@@ -192,7 +203,7 @@ class _CountdownPageAllState extends State<CountdownPageAll>
     return Scaffold(
         backgroundColor: kMainColor,
         appBar: AppBar(
-          title: const Text('Workouts'),
+          title: Text(widget.choices[widget.current_index].title),
           iconTheme: IconThemeData(color: kTextColor),
           backgroundColor: kSecondaryColor,
         ),
@@ -203,6 +214,7 @@ class _CountdownPageAllState extends State<CountdownPageAll>
             backgroundColor: new Color(0xFFE57373),
             onPressed: () {
               setState(() {
+                if(widget.current_index < widget.choices.length-1){
                 widget.current_index++;
                 controller.reset();
 
@@ -213,7 +225,23 @@ class _CountdownPageAllState extends State<CountdownPageAll>
                   duration: Duration(
                       seconds: widget.choices[widget.current_index].reps),
                 );
-                print(widget.current_index);
+                print(widget.current_index);}
+                else{
+                  Alert(
+                      context: context,
+                      title: 'Done',
+                      desc: "You have successfully completed the workout",
+                      style: AlertStyle(
+                        isCloseButton: true,
+                        isButtonVisible: false,
+                        titleStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                        ),
+                      ),
+                      type: AlertType.success
+                  ).show();
+                }
               });
             })
         // Column(

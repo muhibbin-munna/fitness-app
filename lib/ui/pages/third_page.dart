@@ -66,28 +66,54 @@ class _ThirdPageState extends State<ThirdPage> {
                 decoration: BoxDecoration(
                     color: kSecondaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Center(
-                    child: Text(
-                        '${kChoises[index].title} \n00:${kChoises[index].reps}',
-                        style: TextStyle(
-                          color: kTextColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                        ))),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30.0,10,10,10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(kChoises[index].icon,height: 100.0,
+                        width: 100.0,),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text(
+                          '${kChoises[index].title} \n00:${kChoises[index].reps}',
+                          // '${kChoises[index].reps}',
+                          style: TextStyle(
+                            color: kTextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ],
+                  ),
+                ),
               ) : Container(
                 margin: EdgeInsets.only(left: 20, right: 10, bottom: 8),
                 height: 100,
                 decoration: BoxDecoration(
                     color: kSecondaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Center(
-                    child: Text(
-                        '${kChoises[index].title} \nx${kChoises[index].reps}',
-                        style: TextStyle(
-                          color: kTextColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                        ))),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30.0,10,10,10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(kChoises[index].icon,height: 100.0,
+                        width: 100.0,),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Center(
+                          child: Text(
+                              '${kChoises[index].title} \nx${kChoises[index].reps}',
+                              style: TextStyle(
+                                color: kTextColor,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                              ))),
+                    ],
+                  ),
+                ),
               ),
             );
           },
